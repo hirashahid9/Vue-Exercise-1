@@ -1,18 +1,48 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <DropDown :options=options  @show-option="showselected" /><br><br>
+    Selected id: {{selected}}
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import DropDown from './components/DropDown.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    DropDown
+  },
+  data(){
+    return{
+      m: "Welcome",
+      selected: '',
+      options: [
+          {
+              id: 1,
+              title: "Ruby on Rails"
+          },
+          {
+            id: 2,
+            title: "Vue js"
+        },
+        {
+            id: 3,
+            title: "Tailwind Css"
+        },
+        {
+            id: 4,
+            title: "Node js"
+        }
+      ],
+    }
+  },
+  methods: {
+        showselected: function(value){
+            console.log(value);
+            this.selected=value;
+        }
+    }
 }
 </script>
 
