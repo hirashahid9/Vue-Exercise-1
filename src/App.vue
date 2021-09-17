@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <h1 class="pb-10 text-4xl font-bold">Vue Exercise 1</h1>
+    <h3 class="pb-3 text-xl font-bold">Please Select an Option</h3>
     <DropDown :options=options  @show-option="showselected" /><br><br>
     Selected id: {{selected}}
   </div>
@@ -40,7 +42,7 @@ export default {
   methods: {
         showselected: function(value){
             console.log(value);
-            this.selected=value;
+            this.selected=value.id;
         }
     }
 }

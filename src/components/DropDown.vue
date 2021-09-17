@@ -1,12 +1,11 @@
 <template>
-  <div class="hello">
-    <h1>Vue Exercise 1</h1>
-    <h2>Please Select an Option</h2>
-    <select @change="ChangeItem($event.target.value)" >
-      <option v-for="item in options" :key="item.id" :value="item.id">
-        {{ item.title }}
-      </option>
-    </select>
+  <div class="w-40 m-auto shadow-xl">
+    <button @click="visible=!visible" class="w-40 bg-gray-200 rounded-t hover:bg hover:bg-gray-300">{{selected}}</button>
+    <div v-if="visible" class="w-40 px-1 pt-1 m-auto bg-white rounded-lg ">
+      <div v-for="item in options" :key="item.id">
+      <a href="#" @click="changeSelected(item)" class="block border-b-2 bg-gray-150 hover:bg-gray-200">{{item.title}}</a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -14,14 +13,20 @@
 export default {
   name: 'DropDown',
   props: {
-    msg: String,
     options: Array
   },
-  
+  data()
+  {
+    return {
+      visible: false,
+      selected: 'Select an option'
+    }
+  },
   methods: {
-        ChangeItem: function(value){
-          console.log(value)
-            this.$emit('show-option',value)
+        changeSelected: function(value){
+          this.selected=value.title
+          this.visible=false
+          this.$emit('show-option',value)
         }
     },
 }
